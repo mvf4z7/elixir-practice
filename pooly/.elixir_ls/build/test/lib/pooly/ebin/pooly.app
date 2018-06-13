@@ -1,0 +1,12 @@
+{application,pooly,
+             [{applications,[kernel,stdlib,elixir,logger]},
+              {description,"pooly"},
+              {modules,['Elixir.Pooly','Elixir.Pooly.SampleWorker',
+                        'Elixir.Pooly.Server',
+                        'Elixir.Pooly.Server.PoolConfig',
+                        'Elixir.Pooly.Server.State','Elixir.Pooly.Supervisor',
+                        'Elixir.Pooly.WorkerSupervisor']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {extra_applications,[logger]},
+              {mod,{'Elixir.Pooly',[]}}]}.
