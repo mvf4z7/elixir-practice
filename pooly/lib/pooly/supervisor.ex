@@ -1,15 +1,14 @@
 defmodule Pooly.Supervisor do
   use Supervisor
 
-  alias Pooly.Server.PoolConfig, as: PoolConfig
-
-  def start_link(%PoolConfig{} = pool_config) do
-    Supervisor.start_link(__MODULE__, pool_config)
+  def start_link(pools_config) do
+    Supervisor.start_link(__MODULE__, pools_config, name: __MODULE__)
   end
 
-  def init(pool_config) do
+  def init(pools_config) do
     children = [
-      {Pooly.Server, [self(), pool_config]}
+      Pooly.PoolsSupervisor,
+      {Pooly.Server, pools_config}
     ]
 
     Supervisor.init(children, strategy: :one_for_all)

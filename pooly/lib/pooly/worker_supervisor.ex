@@ -11,7 +11,10 @@ defmodule Pooly.WorkerSupervisor do
   end
 
   def start_child(pid, worker_module, args \\ []) do
-    DynamicSupervisor.start_child(pid, {worker_module, args})
+    DynamicSupervisor.start_child(
+      pid,
+      Supervisor.child_spec({worker_module, args}, restart: :temporary)
+    )
   end
 
   # Callbacks
